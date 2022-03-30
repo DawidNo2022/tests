@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import CurrencyForm from './CurrencyForm';
 import userEvent from '@testing-library/user-event';
-import cleanup from '@testing-library/react';
+
 describe('Component CurrencyForm', () => {
   it('should render without crashing', () => {
     render(<CurrencyForm action={() => {}} />);
@@ -33,7 +33,7 @@ describe('Component CurrencyForm', () => {
       // check if action callback was called once and with proper argument
       expect(action).toHaveBeenCalledTimes(1);
       expect(action).toHaveBeenCalledWith({
-        amount: testObj.amount,
+        amount: parseInt(testObj.amount),
         from: testObj.from,
         to: testObj.to,
       });
